@@ -1,0 +1,10 @@
+class Solution:
+    def containsDuplicate(self,nums):
+        # Store unique elements in a set
+        unique = set(nums)
+
+        # If set has fewer elements, duplicates existed
+        return len(unique) < len(nums)
+
+# If len(unique) != len(nums), then duplicates exist.
+# If len(unique) == len(nums), then no duplicates exist.
