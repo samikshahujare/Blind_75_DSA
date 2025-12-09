@@ -1,0 +1,44 @@
+class Solution:
+    def productExceptSelf(self, nums):
+        """
+        Returns an array where each element is the product of all elements
+        in the input array except the one at that index.
+
+        Constraints:
+        - Must run in O(n) time.
+        - Cannot use division.
+        - Must use O(1) extra space (output array doesn't count).
+
+        Approach:
+        ----------
+        We compute two things for each index:
+        1. Product of all elements to the LEFT of that index.
+        2. Product of all elements to the RIGHT of that index.
+
+        We do this in two passes:
+        - First pass: fill result array with left products.
+        - Second pass: multiply each element with the right products.
+        """
+
+        n = len(nums)
+        res = [1] * n   # final result array containing products except self
+
+        # -------------------------
+        # 1️⃣ LEFT PRODUCT PASS
+        # -------------------------
+        # 'left' stores the product of all elements to the left of index i
+        left = 1
+        for i in range(n):
+            res[i] = left       # assign the left product
+            left *= nums[i]     # update left for next index
+
+        # -------------------------
+        # 2️⃣ RIGHT PRODUCT PASS
+        # -------------------------
+        # 'right' stores the product of all elements to the right of index i
+        right = 1
+        for i in range(n - 1, -1, -1):
+            res[i] *= right     # multiply with right product
+            right *= nums[i]    # update right for next index
+
+        return res
