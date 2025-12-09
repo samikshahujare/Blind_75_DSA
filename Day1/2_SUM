@@ -1,0 +1,34 @@
+# This function checks if ANY two numbers in the array sum to the target.
+# It returns "YES" if a pair exists, otherwise "NO".
+
+def two_sum_exists(arr, target):
+    seen = set()  # stores numbers we have already visited
+
+    for num in arr:
+        need = target - num  # the number required to complete the target sum
+
+        # If the required number already exists in 'seen', pair found
+        if need in seen:
+            return "YES"
+
+        # Otherwise, store current number for future checks
+        seen.add(num)
+
+    # If loop ends, no pair exists
+    return "NO"
+
+# This function checks if ANY two numbers in the array sum to the target.
+# It returns index of pairs, if a pair exists.
+
+def two_sum(arr, target):
+    seen = {}  # number → index
+
+    for i, num in enumerate(arr):
+        need = target - num     # the number we want to find
+
+        if need in seen:        # check if we already saw the matching number
+            return [seen[need], i]
+
+        seen[num] = i           # store current number with its index
+
+    return [-1, -1]
