@@ -1,1 +1,14 @@
+# Maximum subarray
+class Solution:
+    def maxSubArray(self,nums):
+        maxi_sum = float('-inf')
+        sum = 0
 
+        for i in range(len(nums)):
+            sum += nums[i]
+            maxi_sum = max(sum,maxi_sum)
+            
+            if sum < 0:
+                sum = 0
+
+        return maxi_sum
