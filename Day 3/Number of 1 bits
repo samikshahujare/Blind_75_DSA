@@ -1,0 +1,6 @@
+def hammingWeight(n):
+    count = 0
+    while n:
+        n &= (n - 1)   # remove one 1-bit
+        count += 1
+    return count
